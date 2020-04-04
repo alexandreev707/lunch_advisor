@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="add_user" author="aandreev">
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_USER'))"/>
+            <column name="NAME" value="Ivanov"/>
+            <column name="EMAIL" value="ivanov@test.ru"/>
+            <column name="PASSWORD" value="$2a$10$K0HHkSmwzoKETH77OvFxvOddqbzCC.w9gLWyRXkxM8u/UXSGfKhrm"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_USER'))"/>
+            <column name="NAME" value="admin"/>
+            <column name="EMAIL" value="admin@test.ru"/>
+            <column name="PASSWORD" value="$2a$11$T4ba8a6YHYo5vAAgnrLRw.A/ofGYLoH.YPPbNh0YtHCBbpUx5sH6O"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_USER'))"/>
+            <column name="NAME" value="petrov"/>
+            <column name="EMAIL" value="petrov@test.ru"/>
+            <column name="PASSWORD" value="Password1"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_USER'))"/>
+            <column name="NAME" value="tanya"/>
+            <column name="EMAIL" value="tanya@test.ru"/>
+            <column name="PASSWORD" value="Password1"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_USER'))"/>
+            <column name="NAME" value="pups"/>
+            <column name="EMAIL" value="pups@test.ru"/>
+            <column name="PASSWORD" value="Password1"/>
+            <column name="ENABLED" valueBoolean="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_user_role" author="aandreev">
+        <insert tableName="USER_ROLES">
+            <column name="USER_ID" valueNumeric="50"/>
+            <column name="ROLE" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="USER_ROLES">
+            <column name="USER_ID" valueNumeric="51"/>
+            <column name="ROLE" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_restaurant" author="aandreev">
+        <insert tableName="RESTAURANT">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_RESTAURANT'))"/>
+            <column name="NAME" value="SUNRISE"/>
+            <column name="ADDRESS" value="st.Victory 14"/>
+        </insert>
+        <insert tableName="RESTAURANT">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_RESTAURANT'))"/>
+            <column name="NAME" value="SKY"/>
+            <column name="ADDRESS" value="Seventh Avenue"/>
+        </insert>
+        <insert tableName="RESTAURANT">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_RESTAURANT'))"/>
+            <column name="NAME" value="SEA"/>
+            <column name="ADDRESS" value="st. Berry"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_item" author="aandreev">
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Crispy Honey Mustard Chicken Salad"/>
+            <column name="PRICE" value="14"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Soup and House Salad"/>
+            <column name="PRICE" value="5"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="TEA"/>
+            <column name="PRICE" value="5"/>
+        </insert>
+
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Meatloaf"/>
+            <column name="PRICE" value="10"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Mashed Potatoes"/>
+            <column name="PRICE" value="3"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="COFFEE"/>
+            <column name="PRICE" value="7"/>
+        </insert>
+
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Zen Soup"/>
+            <column name="PRICE" value="4"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Shrimps"/>
+            <column name="PRICE" value="8"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Juice"/>
+            <column name="PRICE" value="4"/>
+        </insert>
+
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Fresh Soup"/>
+            <column name="PRICE" value="25"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Sandwich"/>
+            <column name="PRICE" value="14"/>
+        </insert>
+        <insert tableName="ITEM">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_ITEM'))"/>
+            <column name="NAME" value="Juice"/>
+            <column name="PRICE" value="7"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_menu" author="aandreev">
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE - 1)"/>
+            <column name="RESTAURANT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE - 1)"/>
+            <column name="RESTAURANT_ID" valueNumeric="51"/>
+        </insert>
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE - 1)"/>
+            <column name="RESTAURANT_ID" valueNumeric="52"/>
+        </insert>
+
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE)"/>
+            <column name="RESTAURANT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE)"/>
+            <column name="RESTAURANT_ID" valueNumeric="51"/>
+        </insert>
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE)"/>
+            <column name="RESTAURANT_ID" valueNumeric="52"/>
+        </insert>
+
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE + 1)"/>
+            <column name="RESTAURANT_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="MENU">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_MENU'))"/>
+            <column name="NAME" value="Lunch"/>
+            <column name="DATE" valueDate="(SELECT CURRENT_DATE + 1)"/>
+            <column name="RESTAURANT_ID" valueNumeric="51"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_items_menu" author="aandreev">
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="52"/>
+            <column name="ITEM_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="52"/>
+            <column name="ITEM_ID" valueNumeric="51"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="52"/>
+            <column name="ITEM_ID" valueNumeric="52"/>
+        </insert>
+
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="53"/>
+            <column name="ITEM_ID" valueNumeric="53"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="53"/>
+            <column name="ITEM_ID" valueNumeric="54"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="53"/>
+            <column name="ITEM_ID" valueNumeric="55"/>
+        </insert>
+
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="54"/>
+            <column name="ITEM_ID" valueNumeric="56"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="54"/>
+            <column name="ITEM_ID" valueNumeric="57"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="54"/>
+            <column name="ITEM_ID" valueNumeric="58"/>
+        </insert>
+
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="55"/>
+            <column name="ITEM_ID" valueNumeric="50"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="55"/>
+            <column name="ITEM_ID" valueNumeric="51"/>
+        </insert>
+        <insert tableName="ITEMS_MENU">
+            <column name="MENU_ID" valueNumeric="55"/>
+            <column name="ITEM_ID" valueNumeric="52"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_review" author="aandreev">
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="50"/>
+            <column name="MENU_ID" value="55"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP)"/>
+            <column name="STATE" value="ACTIVE"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="52"/>
+            <column name="MENU_ID" value="54"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP)"/>
+            <column name="STATE" value="ACTIVE"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="50"/>
+            <column name="MENU_ID" value="53"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP)"/>
+            <column name="STATE" value="DELETED"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="53"/>
+            <column name="MENU_ID" value="54"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP)"/>
+            <column name="STATE" value="ACTIVE"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="52"/>
+            <column name="MENU_ID" value="50"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP - 1)"/>
+            <column name="STATE" value="ACTIVE"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="ID" valueNumeric="(SELECT NEXTVAL('SEQ_REVIEW'))"/>
+            <column name="USER_ID" value="51"/>
+            <column name="MENU_ID" value="56"/>
+            <column name="DATE_TIME" valueDate="(SELECT CURRENT_TIMESTAMP + 1)"/>
+            <column name="STATE" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

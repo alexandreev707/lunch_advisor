@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="create_menu" author="aandreev">
+        <createTable tableName="MENU">
+            <column name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="RESTAURANT_ID" type="BIGINT">
+                <constraints foreignKeyName="FK_RESTAURANT"
+                             referencedTableName="RESTAURANT"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="DATE" type="DATE"/>
+            <column name="NAME" type="VARCHAR(100)"/>
+        </createTable>
+
+        <createSequence sequenceName="SEQ_MENU" startValue="50"/>
+    </changeSet>
+
+    <changeSet id="create_items_menu" author="aandreev">
+        <createTable tableName="ITEMS_MENU">
+            <column name="MENU_ID" type="BIGINT">
+                <constraints primaryKey="true"
+                             foreignKeyName="FK_MENU"
+                             referencedTableName="MENU"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="ITEM_ID" type="BIGINT">
+                <constraints primaryKey="true"
+                             foreignKeyName="FK_ITEM"
+                             referencedTableName="ITEM"
+                             referencedColumnNames="ID"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="ITEMS_MENU" columnNames="MENU_ID, ITEM_ID"/>
+    </changeSet>
+
+    <changeSet id="create_index_date_name" author="aandreev">
+        <createIndex tableName="MENU" indexName="IDX_DATE_NAME">
+            <column name="DATE" type="DATE"/>
+            <column name="NAME" type="VARCHAR(100)"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

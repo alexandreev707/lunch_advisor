@@ -1,0 +1,33 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd">
+    <http pattern="/resources/**" security="none"/>
+    <http pattern="/webjars/**" security="none"/>
+
+    <http>
+        <form-login login-page="/index" default-target-url="/"
+                    authentication-failure-url="/index?error=true"
+                    login-processing-url="/spring_security_check"/>
+        <intercept-url pattern="/index" access="permitAll()"/>
+        <intercept-url pattern="/**/user/register" access="permitAll()"/>
+        <intercept-url pattern="/**/menu/" access="permitAll()"/>
+        <intercept-url pattern="/**/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <logout logout-success-url="/"/>
+        <csrf disabled="true"/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider ref="daoAuthenticationProvider"/>
+    </authentication-manager>
+
+    <beans:bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"
+                id="daoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="authServiceImpl"/>
+        <beans:property name="passwordEncoder" ref="encoder"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="encoder"/>
+</beans:beans>

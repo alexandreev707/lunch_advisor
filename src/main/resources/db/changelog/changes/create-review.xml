@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="create_review" author="aandreev">
+        <createTable tableName="REVIEW">
+            <column name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="BIGINT">
+                <constraints foreignKeyName="FK_REVIEW_USER"
+                             referencedTableName="USER"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="MENU_ID" type="BIGINT">
+                <constraints foreignKeyName="FK_REVIEW_MENU"
+                             referencedTableName="MENU"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="DATE_TIME" type="DATETIME"/>
+            <column name="STATE" type="VARCHAR(32)" defaultValue="ACTIVE"/>
+        </createTable>
+
+        <createSequence sequenceName="SEQ_REVIEW" startValue="50"/>
+    </changeSet>
+
+    <changeSet id="create_index" author="aandreev">
+        <createIndex tableName="REVIEW" indexName="IDX_USER_ID_MENU_ID">
+            <column name="USER_ID" type="BIGINT"/>
+            <column name="MENU_ID" type="BIGINT"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

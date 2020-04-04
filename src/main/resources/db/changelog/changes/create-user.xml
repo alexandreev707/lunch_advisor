@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="create_user" author="aandreev">
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(100)"/>
+            <column name="NAME" type="VARCHAR(100)"/>
+            <column name="PASSWORD" type="VARCHAR(100)"/>
+            <column name="ENABLED" type="BOOLEAN"/>
+        </createTable>
+
+        <createSequence sequenceName="SEQ_USER" startValue="50"/>
+    </changeSet>
+
+    <changeSet id="create_table_user_role" author="aandreev">
+        <createTable tableName="USER_ROLES">
+            <column name="USER_ID" type="BIGINT">
+                <constraints primaryKey="true"
+                             foreignKeyName="FK_USER_ID"
+                             referencedTableName="USER"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="ROLE" type="VARCHAR(100)"/>
+        </createTable>
+
+        <addUniqueConstraint tableName="USER_ROLES" columnNames="USER_ID, ROLE" constraintName="UNIQUE_ROLE"/>
+    </changeSet>
+</databaseChangeLog>
