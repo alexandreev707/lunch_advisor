@@ -12,6 +12,7 @@ import ru.lunch.advisor.web.request.MenuUpdateRequest;
 import ru.lunch.advisor.web.response.MenuItemView;
 import ru.lunch.advisor.web.response.MenuReviewView;
 import ru.lunch.advisor.web.response.MenuView;
+import ru.lunch.advisor.web.validation.ApplicationValidation;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,10 +26,13 @@ public class MenuRestController {
 
     private final MenuService menuService;
     private final MenuWebMapper menuMapper;
+    private final ApplicationValidation validator;
 
-    public MenuRestController(MenuService menuService, MenuWebMapper menuMapper) {
+
+    public MenuRestController(MenuService menuService, MenuWebMapper menuMapper, ApplicationValidation validator) {
         this.menuService = menuService;
         this.menuMapper = menuMapper;
+        this.validator = validator;
     }
 
     @GetMapping("{id}")
@@ -56,6 +60,7 @@ public class MenuRestController {
 
     @PostMapping
     public ResponseEntity<MenuView> create(@RequestBody MenuCreateRequest request) {
+        validator.validate(request);
         MenuDTO created = menuService.create(menuMapper.mapToMenuItem(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(new MenuView(created));
     }
@@ -63,6 +68,7 @@ public class MenuRestController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@PathVariable("id") Long id, @RequestBody MenuUpdateRequest request) {
+        validator.validate(request);
         menuService.update(id, menuMapper.mapToMenuItem(request));
     }
 

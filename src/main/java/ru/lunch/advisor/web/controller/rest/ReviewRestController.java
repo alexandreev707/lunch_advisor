@@ -7,8 +7,10 @@ import ru.lunch.advisor.service.ReviewService;
 import ru.lunch.advisor.service.dto.ReviewDTO;
 import ru.lunch.advisor.web.mapper.ReviewWebMapper;
 import ru.lunch.advisor.web.request.ReviewRequest;
+import ru.lunch.advisor.web.request.ReviewRestaurantRequest;
 import ru.lunch.advisor.web.response.ReviewUserView;
 import ru.lunch.advisor.web.response.ReviewView;
+import ru.lunch.advisor.web.validation.ApplicationValidation;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,10 +23,13 @@ public class ReviewRestController {
 
     private final ReviewService reviewService;
     private final ReviewWebMapper reviewMapper;
+    private final ApplicationValidation validator;
 
-    public ReviewRestController(ReviewService reviewService, ReviewWebMapper reviewMapper) {
+    public ReviewRestController(ReviewService reviewService, ReviewWebMapper reviewMapper,
+                                ApplicationValidation validator) {
         this.reviewService = reviewService;
         this.reviewMapper = reviewMapper;
+        this.validator = validator;
     }
 
     @GetMapping("/{id}")
@@ -55,13 +60,15 @@ public class ReviewRestController {
 
     @PostMapping
     public ResponseEntity<ReviewView> create(@RequestBody ReviewRequest request) {
+        validator.validate(request);
         ReviewDTO created = reviewService.create(reviewMapper.map(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(new ReviewView(created));
     }
 
     @PostMapping("/restaurant/{id}")
     public ResponseEntity<ReviewView> createByRestaurantId(@PathVariable("id") Long id,
-                                                           @RequestBody ReviewRequest request) {
+                                                           @RequestBody ReviewRestaurantRequest request) {
+        validator.validate(request);
         ReviewDTO created = reviewService.createByRestaurant(id, reviewMapper.map(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(new ReviewView(created));
     }
@@ -69,12 +76,14 @@ public class ReviewRestController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@PathVariable("id") Long id, @RequestBody ReviewRequest request) {
+        validator.validate(request);
         reviewService.update(id, reviewMapper.map(request));
     }
 
     @PutMapping("/restaurant/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateByRestaurant(@PathVariable("id") Long id, @RequestBody ReviewRequest request) {
+    public void updateByRestaurant(@PathVariable("id") Long id, @RequestBody ReviewRestaurantRequest request) {
+        validator.validate(request);
         reviewService.updateByRestaurant(id, reviewMapper.map(request));
     }
 

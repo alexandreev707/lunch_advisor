@@ -13,6 +13,7 @@ import ru.lunch.advisor.web.request.UserCreateRequest;
 import ru.lunch.advisor.web.request.UserUpdateRequest;
 import ru.lunch.advisor.web.response.UserMenuView;
 import ru.lunch.advisor.web.response.UserView;
+import ru.lunch.advisor.web.validation.ApplicationValidation;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,10 +27,13 @@ public class UserRestController {
 
     private final UserService userService;
     private final UserWebMapper userMapper;
+    private final ApplicationValidation validator;
 
-    public UserRestController(UserService userService, UserWebMapper userMapper) {
+    public UserRestController(UserService userService, UserWebMapper userMapper,
+                              ApplicationValidation validator) {
         this.userService = userService;
         this.userMapper = userMapper;
+        this.validator = validator;
     }
 
     @GetMapping("/{id}")
@@ -47,7 +51,7 @@ public class UserRestController {
 
     @GetMapping(value = "/menu", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserMenuView> menu(@RequestParam @Nullable LocalDate startDate,
-                                    @RequestParam @Nullable LocalDate endDate) {
+                                   @RequestParam @Nullable LocalDate endDate) {
         return userService.getMenuByUser(SecurityUtil.get().getUserId(), startDate, endDate)
                 .stream()
                 .map(UserMenuView::new)
@@ -55,15 +59,17 @@ public class UserRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserView> create(@RequestBody UserCreateRequest user) {
-        UserDTO created = userService.create(userMapper.map(user));
+    public ResponseEntity<UserView> create(@RequestBody UserCreateRequest request) {
+        validator.validate(request);
+        UserDTO created = userService.create(userMapper.map(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(new UserView(created));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@PathVariable("id") Long id, @RequestBody UserUpdateRequest user) {
-        userService.update(id, userMapper.map(user));
+    public void update(@PathVariable("id") Long id, @RequestBody UserUpdateRequest request) {
+        validator.validate(request);
+        userService.update(id, userMapper.map(request));
     }
 
     @DeleteMapping("/{id}")
