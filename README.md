@@ -49,3 +49,6 @@
 - Ограничить попытки ввода пароля + Captcha
 -----------------------------
 #### Для перваначального знакомства с проектом имеется веб прототип
+Тестовые пользователи:
+- Administrator (login: admin@test.ru, pass: admin)
+- User (login: ivanov@test.ru, pass: ivanov)
