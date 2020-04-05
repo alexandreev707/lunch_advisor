@@ -26,13 +26,15 @@
             <c:forEach var="m" items="${menu}">
                 <div class="card mb-4 box-shadow">
                     <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">${m.restaurant}</h4>
+                        <h4 class="my-0 font-weight-normal"><spring:message
+                                code="msg.restaurant.title"/>: ${m.restaurant}</h4>
                     </div>
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title">${m.menu}</h1>
                         <h3 class="card-title pricing-card-title"><spring:message
                                 code="msg.date.title"/>: ${m.date}</h3>
                         <ul class="list-unstyled mt-3 mb-4">
+                            <b><spring:message code="msg.items.title"/></b>:
                             <c:forEach var="i" items="${m.items}">
                                 <li>${i.name}</li>
                             </c:forEach>

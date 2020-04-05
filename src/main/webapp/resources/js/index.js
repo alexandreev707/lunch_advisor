@@ -11,7 +11,7 @@ $('#saveId').on('click', function () {
         type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: "/api/user/register/",
+        url:  ctx + "api/user/register/",
         data: JSON.stringify({
             name: $("input[name='name']").val(),
             email: $("input[name='email']").val(),

@@ -132,8 +132,8 @@ public class ReviewServiceTest {
 
     public static Object[][] createExceptionData() {
         return new Object[][]{
-                {Optional.of(Mockito.mock(UserModel.class)), Optional.empty(), 23},
-                {Optional.empty(), Optional.empty(), 23},
+                {Optional.of(Mockito.mock(UserModel.class)), Optional.empty(), 25},
+                {Optional.empty(), Optional.empty(), 25},
                 {Optional.empty(), Optional.empty(), 0}
         };
     }

@@ -1,4 +1,4 @@
-let userAjaxUrl = "/api/user/";
+let userAjaxUrl = ctx + "/api/user/";
 
 $(document).ready(function () {
     initContext({
@@ -36,7 +36,7 @@ $('#datatable').on('change', 'tr', function () {
     $.ajax({
         type: 'GET',
         async: false,
-        url: "/api/review/menu/" + obj.id
+        url: ctx + "/api/review/menu/" + obj.id
     }).done(function (data) {
         update(data, node);
     }).fail(function (data) {
@@ -59,7 +59,7 @@ $('#datatable').on('click', 'tr', function () {
         "paging": false,
         "searching": false,
         "destroy": true,
-        "sAjaxSource": "/api/item/menu/" + menuId,
+        "sAjaxSource": ctx + "/api/item/menu/" + menuId,
         "sAjaxDataProp": "",
         "columns": [
             {"data": "name"},

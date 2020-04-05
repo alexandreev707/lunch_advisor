@@ -1,4 +1,4 @@
-let userListAjaxUrl = "/api/user/";
+let userListAjaxUrl = ctx + "/api/user/";
 
 $(document).ready(function () {
     initContext({
@@ -47,7 +47,7 @@ function edit(obj) {
         "paging": false,
         "searching": false,
         "destroy": true,
-        "sAjaxSource": "/api/review/user/" + userId,
+        "sAjaxSource": ctx + "/api/review/user/" + userId,
         "sAjaxDataProp": "",
         "columns": [
             {

@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<base href="${pageContext.request.contextPath}/"/>
+<script>var ctx = "${pageContext.request.contextPath}"</script>
 
 <link rel="stylesheet" href="webjars/bootstrap/4.4.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">

@@ -1,4 +1,4 @@
-let menuAjaxUrl = "/api/menu/";
+let menuAjaxUrl = ctx + "/api/menu/";
 let modalData;
 
 $(document).ready(function () {
@@ -78,7 +78,7 @@ function edit(obj) {
         "paging": false,
         "searching": false,
         "destroy": true,
-        "sAjaxSource": "/api/item/menu/" + menuId,
+        "sAjaxSource": ctx + "/api/item/menu/" + menuId,
         "sAjaxDataProp": "",
         "columns": [
             {

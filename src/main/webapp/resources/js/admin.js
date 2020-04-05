@@ -1,4 +1,4 @@
-let adminAjaxUrl = "/api/restaurant/";
+let adminAjaxUrl =  ctx + "/api/restaurant/";
 
 $(document).ready(function () {
     initContext({

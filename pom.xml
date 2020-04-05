@@ -45,7 +45,7 @@
     </properties>
 
     <build>
-        <finalName>lunch.advisor</finalName>
+        <finalName>lunch_advisor</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>

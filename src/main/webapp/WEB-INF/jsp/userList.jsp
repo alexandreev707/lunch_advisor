@@ -83,14 +83,15 @@
                             <option datatype="text" name="role" value="ROLE_USER">USER</option>
                         </select>
                     </div>
+                    <label for="enabled" class="col-form-label"><spring:message
+                            code="msg.user.list.form.current.role"/>:</label>
                     <div class="form-group">
-                        <label for="enabled" class="col-form-label">Roles:</label>
                         <input type="text" id="roleListId" value="" readonly="readonly"/>
                     </div>
                 </form>
                 <div class="modalContainer">
                     <h2 class="text-center"><spring:message code="msg.voting.history"/></h2>
-                    <table class="table table-striped table-hover" id="modalDataTable">
+                    <table class="table table-striped table-hover" id="modalDataTable" width="100%">
                         <thead>
                         <th><spring:message code="msg.user.list.head.form.table.menu"/></th>
                         <th><spring:message code="msg.user.list.head.form.table.datetime"/></th>
