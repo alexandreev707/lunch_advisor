@@ -1,11 +1,13 @@
 package ru.lunch.advisor.persistence.query.repository.specification;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 import ru.lunch.advisor.persistence.model.ReviewModel;
 import ru.lunch.advisor.service.State;
 
 import java.time.LocalDateTime;
 
+@RequestScope
 @Component
 public class ReviewSpecification extends BuilderSpecification<ReviewSpecification, ReviewModel> {
 

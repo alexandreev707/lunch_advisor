@@ -6,8 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <context:property-placeholder location="classpath:app.properties" system-properties-mode="OVERRIDE"/>
-
     <context:component-scan base-package="ru.lunch.advisor.persistence"/>
     <jpa:repositories base-package="ru.lunch.advisor.persistence"/>
 

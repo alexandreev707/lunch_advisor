@@ -3,7 +3,6 @@ package ru.lunch.advisor.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -32,7 +31,6 @@ import java.util.stream.Collectors;
 import static ru.lunch.advisor.web.converter.DateTimeUtil.getEndDateTimeInclusive;
 import static ru.lunch.advisor.web.converter.DateTimeUtil.getStartDateTimeInclusive;
 
-@PropertySource("classpath:app.properties")
 @Service
 public class ReviewService {
 

@@ -1,6 +1,7 @@
 package ru.lunch.advisor.persistence.query.repository.specification;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 import ru.lunch.advisor.persistence.model.MenuModel;
 
 import javax.persistence.criteria.*;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 /**
  * Спецификация для работы с меню
  */
+@RequestScope
 @Component
 public class MenuSpecification extends BuilderSpecification<MenuSpecification, MenuModel> {
 
